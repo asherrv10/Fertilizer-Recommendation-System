@@ -43,16 +43,6 @@ st.markdown("""
         color: white !important;
         margin-top: 0;
     }
-    .video-btn {
-        display: inline-block;
-        background-color: #EF4444;
-        color: white !important;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        margin-top: 10px;
-    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -217,13 +207,8 @@ if st.button("🚀 Recommend Fertilizer", type="primary", use_container_width=Tr
         main_fert = top3_fertilizers[0]
         fert_info = FERTILIZER_DETAILS.get(main_fert, {})
         fert_desc = fert_info.get("description", BASE_FERTILIZER_SCIENCE.get(main_fert.lower(), f"{main_fert} (Fertilizer)"))
-        video_link = fert_info.get("link", "")
         
         st.success(f"### 🥇 Recommended: **{main_fert}**\n\n**Confidence:** **{top3_probs[0]*100:.2f}%**\n\n{fert_desc}")
-        
-        if video_link:
-            st.markdown(f'<a href="{video_link}" target="_blank" class="video-btn">▶️ Watch Application Video Guide</a>', unsafe_allow_html=True)
-            st.write("")
 
         st.subheader("💡 Alternative Options")
         for fert, prob in zip(top3_fertilizers[1:], top3_probs[1:]):
